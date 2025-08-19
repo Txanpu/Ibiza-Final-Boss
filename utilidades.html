@@ -17,10 +17,11 @@
 
     .wheel {
       position: relative;
-      width: 300px;
-      height: 300px;
+      width: 350px;   /* un poco más grande para dar aire */
+      height: 350px;
       border-radius: 50%;
       overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
     }
 
@@ -38,22 +39,28 @@
       top: 50%;
       transform-origin: 0 0;
       text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff; /* contraste con colores vivos */
+      width: 50%;
     }
 
     .label span {
       display: block;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -150%); /* empuja el texto hacia fuera, dentro del quesito */
+      white-space: nowrap;
     }
 
     .label.win span {
       font-weight: bold;
+      text-shadow: 0 0 6px #000;
       animation: winner 0.6s ease-out;
     }
 
     @keyframes winner {
-      0% { transform: translate(-50%, -50%) scale(1); }
-      50% { transform: translate(-50%, -50%) scale(1.2); }
-      100% { transform: translate(-50%, -50%) scale(1); }
+      0% { transform: translate(-50%, -150%) scale(1); }
+      50% { transform: translate(-50%, -150%) scale(1.2); }
+      100% { transform: translate(-50%, -150%) scale(1); }
     }
 
     .controls {
@@ -114,7 +121,7 @@
     function mkLabel(text, angleDeg){
       const d = document.createElement('div');
       d.className = 'label';
-      d.style.transform = `rotate(${angleDeg}deg) translate(0, -43%) rotate(${-angleDeg}deg)`;
+      d.style.transform = `rotate(${angleDeg}deg) translate(0, -50%) rotate(${-angleDeg}deg)`;
       const s = document.createElement('span'); s.textContent = text; d.appendChild(s);
       return d;
     }
